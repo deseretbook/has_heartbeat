@@ -73,29 +73,6 @@ status code. To do so, get back into your initializer:
   end
 
 
-=== External Notifications
-
-Further, if you'd like HasHeartbeat to notify an external service when your application is
-experiencing a database connection error, you can ask it to piggy-back off an existing Airbrake
-configuration you are using. To do so, add the following to a config/initializer:
-
-  HasHeartbeat.configure do |config|
-    config.use_airbrake!
-  end
-
-By specifying +use_airbrake!+, HasHeartbeat will use any existing Airbrake configuration and send
-a notification to your Airbrake service in the following form:
-
-  {
-    :error_class   => "Heartbeat Failure",                    # <= Generic title
-    :error_message => "Heartbeat Failure: #{e.message}",      # <= Raised error message
-    :parameters    => params                                  # <= Request parameters
-  }
-
-If you don't wish to use Airbrake, simply leave out the call to +use_airbrake!+ and all is well.
-
-
-
 == Copyright
 
 Copyright 2014 Awexome Labs, LLC
